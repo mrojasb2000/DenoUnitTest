@@ -1,4 +1,10 @@
-import { assert, assertEquals, assertNotEquals, assertStrictEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assert, 
+    assertEquals, 
+    assertNotEquals, 
+    assertStrictEquals, 
+    assertStringIncludes,
+    assertArrayIncludes,
+    assertMatch } from "https://deno.land/std/testing/asserts.ts";
 
 Deno.test("Test Assert", () => {
     assert("Hello")
@@ -37,5 +43,26 @@ Deno.test("Test Assert Strict Equals", () => {
     assertStrictEquals(true, true)
     assertStrictEquals("Hello", "Hello")
     assertStrictEquals(undefined, undefined)
+})
 
+/* Deno.test("Test Floats", () => {
+    assertEquals(0.1 + 0.2, 0.3)
+})
+
+Deno.test("Test Floats Strict", () => {
+    assertStrictEquals(0.1 + 0.2, 0.3)
+}) */
+
+Deno.test("Test Assert String Includes", () => {
+    assertStringIncludes("Hello World", "Hello")
+})
+
+Deno.test("Test Assert Array Includes", () => {
+    assertArrayIncludes([1,2,3], [1])
+    assertArrayIncludes([1,2,3], [1,2])
+    assertArrayIncludes(Array.from("Hello World"), Array.from("Hello"))
+})
+
+Deno.test("Test Assert Match", () => {
+    assertMatch("abcdefghi", new RegExp("def"))
 })
