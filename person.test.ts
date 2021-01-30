@@ -4,7 +4,9 @@ import { assert,
     assertStrictEquals, 
     assertStringIncludes,
     assertArrayIncludes,
-    assertMatch } from "https://deno.land/std/testing/asserts.ts";
+    assertMatch,
+    assertThrows,
+    AssertionError } from "https://deno.land/std/testing/asserts.ts";
 
 Deno.test("Test Assert", () => {
     assert("Hello")
@@ -69,4 +71,14 @@ Deno.test("Test Assert Match", () => {
     const basicUrl = new RegExp("^https?:\/\/[a-z\.]+\.com$")
     assertMatch("https://www.google.com", basicUrl)
     assertMatch("http://facebook.com", basicUrl)
+})
+
+Deno.test("Test Assert Throws", () => {
+    assertThrows((): void => {
+        assertStrictEquals(2,3)
+    })
+
+    assertThrows((): void => {
+        assertStrictEquals(2,3,"Values Don't Match!")
+    }, AssertionError, "Values Don't Match!")
 })
