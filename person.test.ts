@@ -1,4 +1,4 @@
-import { assert, assertEquals, assertNotEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assert, assertEquals, assertNotEquals, assertStrictEquals } from "https://deno.land/std/testing/asserts.ts";
 
 Deno.test("Test Assert", () => {
     assert("Hello")
@@ -30,4 +30,12 @@ Deno.test("Test Assert not Equals", () => {
     assertNotEquals(undefined, "")
     assertNotEquals(new Date(), Date.now())
     assertNotEquals(new RegExp("abc"), new RegExp("def"))
+})
+
+Deno.test("Test Assert Strict Equals", () => {
+    assertStrictEquals(1,1)
+    assertStrictEquals(true, true)
+    assertStrictEquals("Hello", "Hello")
+    assertStrictEquals(undefined, undefined)
+
 })
