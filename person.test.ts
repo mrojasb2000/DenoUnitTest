@@ -99,3 +99,15 @@ Deno.test("Test Assert Throws Async", () => {
         })
     }, Error, rejectExpected)
 })
+
+// Custom Messages
+/* Deno.test("Test Assert Equal Fail Custom Message", () => {
+    assertEquals(1,2,"Values Don't Match!")
+}) */
+
+Deno.test({
+    name: "my test",
+    fn: (): void => {
+        // Do some testing here
+    }
+})
