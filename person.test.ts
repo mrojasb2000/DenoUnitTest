@@ -85,10 +85,17 @@ Deno.test("Test Assert Throws", () => {
 })
 
 Deno.test("Test Assert Throws Async", () => {
-    const expected = "Panic! Threw Error"
+    const errorExpected = "Panic! Threw Error"
     assertThrowsAsync((): Promise<void> => {
         return new Promise((): void => {
-            throw new Error(expected)
+            throw new Error(errorExpected)
         })
-    }, Error, expected)
+    }, Error, errorExpected)
+
+    const rejectExpected = "Panic! Promise Rejected"
+    assertThrowsAsync((): Promise<void> => {
+        return new Promise((resolve, reject): void => {
+            reject(new Error(rejectExpected))
+        })
+    }, Error, rejectExpected)
 })
