@@ -6,7 +6,8 @@ import { assert,
     assertArrayIncludes,
     assertMatch,
     assertThrows,
-    AssertionError } from "https://deno.land/std/testing/asserts.ts";
+    AssertionError,
+    assertThrowsAsync } from "https://deno.land/std/testing/asserts.ts";
 
 Deno.test("Test Assert", () => {
     assert("Hello")
@@ -81,4 +82,13 @@ Deno.test("Test Assert Throws", () => {
     assertThrows((): void => {
         assertStrictEquals(2,3,"Values Don't Match!")
     }, AssertionError, "Values Don't Match!")
+})
+
+Deno.test("Test Assert Throws Async", () => {
+    const expected = "Panic! Threw Error"
+    assertThrowsAsync((): Promise<void> => {
+        return new Promise((): void => {
+            throw new Error(expected)
+        })
+    }, Error, expected)
 })
